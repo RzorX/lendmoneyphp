@@ -1,2 +1,1 @@
-# lendmoneyphp
-Application php
+# lendmoney

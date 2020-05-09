@@ -1,0 +1,471 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title> Itander </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="All">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="All">
+        <link rel="stylesheet" href="css/main.css" media="All">
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+        <?php
+            $_GET
+        ?>
+        <a name="home"></a>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <p align= "center">
+                        <a class="navbar-brand" href="#" onclick="window.location = 'index.php'">
+                            <img
+                                srcset="img/itander-logo-only.png 320w,
+                                img/itander-logo-only.png 480w,
+                                img/itander-logo-only.png 800w,
+                                img/itander-logo-only.png 1000w"
+                                sizes="(max-width: 320px) 280px,
+                                (max-width: 480px) 440px,
+                                800px"
+                                src="img/itander-logo-only.png" alt="Empréstimos online">
+                        </a></p>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <form class="navbar-form navbar-right" role="form">
+                        <div class="form-group" id="emaildiv">
+                            <input type="text" placeholder="Email" class="form-control" style="
+                                   margin-top: 15px;
+                                   width: 226px;" id="login" required>
+                        </div>
+                        <div class="form-group" id="passdiv">
+                            <input type="password" placeholder="Senha" class="form-control" style="
+                                   margin-top: 15px;" id="pass" required>
+                        </div>
+                        <button type="submit" class="btn btn-success" style="
+                                margin-top: 15px;" id="entrar">Entrar</button>
+                        <div class="form-group" id="cadastrardiv">
+                            <a class="btn btn-primary" href="form.php" role="button" style="margin-top: 15px;"
+                               id="cadastrar">Cadastrar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="home">
+            <h1 class="title">Empréstimo Pessoal <strong>Online</strong></h1>
+        </div>
+        <div class="sub">
+            <strong><font color="black" id="parc">Quanto você precisa?</font></strong>
+        </div>
+        <div class="valores_emp" id="valempresitmo">
+            <div class="valores_button">
+                <div class="botao">
+                    <button class="valores1" type="button" onclick="calcparcelas(value)"
+                            id="10k" value="R$10.000"><strong> R$ 10.000 </strong></button>
+                </div>
+                <div class="botao">
+                    <button class="valores1" type="button" onclick="calcparcelas(value)"
+                            id="20k" value="R$20.000"><strong> R$ 20.000 </strong></button>
+                </div>
+                <div class="botao">
+                    <button class="valores1" type="button" onclick="calcparcelas(value)"
+                            id="30k" value="R$30.000"><strong> R$ 30.000 </strong></button>
+                </div>
+                <div class="valores1_button" style="
+                     margin-bottom: 0px;">
+                    <div class="botao">
+                        <button class="valores1" type="button" onclick="calcparcelas(value)"
+                                id="40k" value="R$40.000"><strong> R$ 40.000 </strong></button>
+                    </div>
+                    <div class="botao">
+                        <button class="valores1" type="button" onclick="calcparcelas(value)"
+                                id="50k" value="R$50.000"><strong> R$ 50.000 </strong></button>
+                    </div>
+                    <div class="botao">
+                        <button class="valores1" type="button" data-toggle="modal" data-target="#solicitaemprestimo_value"
+                                id="value_alt"><strong> Outro Valor </strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="valores_emp" id="parcempresitmo">
+            <div class="valores_button">
+                <div class="botao">
+                    <button class="valores1" type="button" data-toggle="modal" data-target="#solicitaemprestimo"
+                            onclick="enviaparc(value)"
+                            id="6x" value="6x"><strong> 6X </strong></button>
+                </div>
+                <div class="botao">
+                    <button class="valores1" type="button" data-toggle="modal" data-target="#solicitaemprestimo"
+                            onclick="enviaparc(value)"
+                            id="8x" value="8x"><strong> 8X </strong></button>
+                </div>
+                <div class="botao">
+                    <button class="valores1" type="button" data-toggle="modal" data-target="#solicitaemprestimo"
+                            onclick="enviaparc(value)"
+                            id="12x" value="12x"><strong> 12X </strong></button>
+                </div>
+                <div class="valores1_button" style="
+                     margin-bottom: 0px;">
+                    <div class="botao">
+                        <button class="valores1" type="button" data-toggle="modal" data-target="#solicitaemprestimo"
+                                onclick="enviaparc(value)"
+                                id="16x" value="16x"><strong> 16X </strong></button>
+                    </div>
+                    <div class="botao">
+                        <button class="valores1" type="button" data-toggle="modal" data-target="#solicitaemprestimo"
+                                onclick="enviaparc(value)"
+                                id="24x" value="24x"><strong> 24X </strong></button>
+                    </div>
+                    <div class="botao">
+                        <button class="valores1" type="button" onclick="voltar()"
+                                id="back_value"><strong> Voltar </strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="escolhido" id="escolhidos"></p>
+
+        <div class="infos">
+            <h2 align="center" class="infostitle">
+                <strong>As vantagens de fazer um empréstimo no Itander:</strong>
+            </h2>
+            <div class="vantagens">
+                <div class="a">
+                    <div class="b">
+                        <picture class='fotos'>
+                            <source type="image/webp" srcset="img/vantagem_1.webp">
+                            <source type="image/png" srcset="img/vantagem_1.png">
+                            <img src="img/vantagem_1.png" alt="Dinheiro na conta em até 1 dia útil">
+                        </picture>
+                    </div>
+                </div>
+                <div class="description_img">
+                    <h3 class="emp">Dinheiro rápida na sua conta</h3>
+                    <p class="vantagem_sub">Em até 24h após a aprovação do contrato.</p>
+                </div>
+            </div>
+            <div class="vantagens">
+                <div class="a">
+                    <div class="b">
+                        <picture class='fotos'>
+                            <source type="image/webp" srcset="img/vantagem_2.webp">
+                            <source type="image/png" srcset="img/vantagem_2.png">
+                            <img src="img/vantagem_2.png" alt="Empréstimo sem garantia">
+                        </picture>
+                    </div>
+                </div>
+                <div class="description_img">
+                    <h3 class="emp">Empréstimo sem garantia</h3>
+                    <p class="vantagem_sub">Fique tranquilo: não pedimos seus bens.</p>
+                </div>
+            </div>
+            <div class="vantagens">
+                <div class="a">
+                    <div class="b">
+                        <picture class='fotos'>
+                            <source type="image/webp" srcset="img/vantagem_3.webp">
+                            <source type="image/png" srcset="img/vantagem_3.png">
+                            <img src="img/vantagem_3.png" alt="Parcelamento de 12 a 36 meses">
+                        </picture>
+                    </div>
+                </div>
+                <div class="description_img">
+                    <h3 class="emp">Parcelamento de 12 a 36 meses</h3>
+                    <p class="vantagem_sub">Você decide em quantas vezes quer pagar.</p>
+                </div>
+            </div>
+            <div class="vantagens">
+                <div class="a">
+                    <div class="b">
+                        <picture class='fotos'>
+                            <source type="image/webp" srcset="img/vantagem_4.webp">
+                            <source type="image/png" srcset="img/vantagem_4.png">
+                            <img src=".png" alt="40 dias para começar a pagar">
+                        </picture>
+                    </div>
+                </div>
+                <div class="description_img">
+                    <h3 class="emp">40 dias para começar a pagar</h3>
+                    <p class="vantagem_sub">A primeira parcela é só depois de 40 dias.</p>
+                </div>
+            </div>
+
+            <div class="fazersimulacaoF">
+                <a class="simular_emprestimo"  href="#home" role="button"> Simule um empréstimo </a>
+            </div>
+        </div>
+
+        <div class="aboutus">
+            <div class="us">
+                <h1 class="itander"> O ITANDER </h1>
+                <h2 class="slogan">Mudando o mercado de<br> empréstimo pessoal no Brasil</h2>
+                <p class="about">
+                    Lançado em 2020, o Itander entra no mercado de forma promissora com empréstimos 100% online no Brasil.
+                </p>
+                <p class="about2">
+                    Com tecnologia de ponta e uma metodologia própria de avaliação, oferecemos uma solução simples, rápida e econômica, que prioriza a experiência de nossos clientes e permite que cada vez mais pessoas possam fazer um empréstimo pessoal seguro, com mais conveniência e menos burocracia.
+                </p>
+                <div class="about3">
+                    <a class="Conheca"  href="oitander.php" role="button" onclick="window.location = 'oitander.php'"> Conheça o Itander </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="team">
+                        <div class="team2">
+                            <picture class='teamphoto'>
+                                <img class="photo" src="img/equipe_edited.jpg" alt="Nossa equipe">
+                            </picture>
+                        </div>
+                    </div>
+                    <p> Um pouco sobre os idealizadores do site, gostaria de nos conhecer melhor? clique no link abaixo, ficamos felizes em te contar um pouco sobre a gente :) . </p>
+                    <p class="tq"><a class="nossa-equipe" href="nossaequipe.php" role="button" onclick="window.location = 'nossaequipe.php'"> Nossa equipe </a></p>
+                </div>
+                <div class="col-md-4">
+                    <div class="team">
+                        <div class="team2">
+                            <picture class='teamphoto'>
+                                <img class="photo" src="img/equipe_edited.jpg" alt="Nossa equipe">
+                            </picture>
+                        </div>
+                    </div>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <p class="tq"><a class="nossa-equipe" href="services.php" role="button" onclick="window.location = 'services.php'"> Produtos & Serviços </a></p>
+                </div>
+                <div class="col-md-4">
+                    <div class="team">
+                        <div class="team2">
+                            <picture class='teamphoto'>
+                                <img class="photo" src="img/equipe_edited.jpg" alt="Nossa equipe">
+                            </picture>
+                        </div>
+                    </div>
+                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo.</p>
+                    <p class="tq"><a class="nossa-equipe" href="#" role="button"
+                                     data-toggle="modal" data-target="#exampleModal" data-whatever="@itander"
+                                     >Mande sua mensagem</a></p>
+                </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Fale conosco</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Seu nome:</label>
+                                    <input type="text" class="form-control" id="recipient-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">E-mail:</label>
+                                    <input type="text" class="form-control" id="recipient-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Mensagem:</label>
+                                    <textarea class="form-control" id="message-text" required></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer" style="text-align: center;">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="ModalLongoExemplo" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="TituloModalLongoExemplo"><strong>Termos e condições</strong></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" style="margin-left: 10px;"
+                                   onclick="liberatermo()">
+                            <label class="form-check-label" for="exampleCheck1">Li e concordo com os termos e condições acima</label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary" id="aceitocondições">Aceito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="solicitaemprestimo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="solicitaemprestimoLabel"><strong>PREENCHA OS CAMPOS ABAIXO
+                                    E SIMULE SEM COMPROMISSO.</strong></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="form_emp">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Nome</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">E-mail</label>
+                                    <input type="text" class="form-control" id="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">CPF</label>
+                                    <input type="text" class="form-control" id="cpf" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Valor desejado</label>
+                                    <input type="text" class="form-control" id="valoremp" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="qtdparc_emp" disabled>
+                                        <option value="">Quantidade de parcelas</option>
+                                        <option value="6x"> 6x </option>
+                                        <option value="8x"> 8x </option>
+                                        <option value="12x"> 12x </option>
+                                        <option value="16x"> 16x </option>
+                                        <option value="24x"> 24x </option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer" style="text-align: center;">
+                                    <input type="submit" class="btn btn-primary" id="simularmodal"
+                                           role="button" value="Simular">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="solicitaemprestimo_value" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="solicitaemprestimoLabel"><strong>PREENCHA OS CAMPOS ABAIXO
+                                    E SIMULE SEM COMPROMISSO.</strong></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="form_emp">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Nome</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">E-mail</label>
+                                    <input type="text" class="form-control" id="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">CPF</label>
+                                    <input type="text" class="form-control" id="cpf" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Valor desejado</label>
+                                    <input type="text" class="form-control" id="valor" required>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="qtdparc" required>
+                                        <option value="">Quantidade de parcelas</option>
+                                        <option value="6X"> 6x </option>
+                                        <option value="8X"> 8x </option>
+                                        <option value="12X"> 12x </option>
+                                        <option value="16X"> 16x </option>
+                                        <option value="24X"> 24x </option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer" style="text-align: center;">
+                                    <input type="submit" class="btn btn-primary" id="simularmodal"
+                                           role="button" value="Simular">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <footer>
+                <p>&copy; Company 2015</p>
+            </footer>
+        </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+        <script type="text/javascript">
+                                       document.getElementById("parcempresitmo").hidden = true;
+                                       document.getElementById("aceitocondições").disabled = true;
+                                       document.getElementById("empsolicitado").hidden = true;
+                                       document.getElementById("logado").hidden = true;
+        </script>
+        <script>
+            (function (b, o, i, l, e, r) {
+                b.GoogleAnalyticsObject = l;
+                b[l] || (b[l] =
+                        function () {
+                            (b[l].q = b[l].q || []).push(arguments)
+                        });
+                b[l].l = +new Date;
+                e = o.createElement(i);
+                r = o.getElementsByTagName(i)[0];
+                e.src = '//www.google-analytics.com/analytics.js';
+                r.parentNode.insertBefore(e, r)
+            }(window, document, 'script', 'ga'));
+            ga('create', 'UA-XXXXX-X', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>
