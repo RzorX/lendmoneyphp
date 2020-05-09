@@ -426,7 +426,7 @@
                                 </div>
                                 <div class="modal-footer" style="text-align: center;">
                                     <input type="submit" class="btn btn-primary" id="simularmodal"
-                                           role="button" value="Simular">
+                                           role="button" value="Simular">                                
                                 </div>
                             </form>
                         </div>

@@ -204,7 +204,7 @@
                 </a>
             </div>
             <div class="container" id="box" style=" margin-top: 100px;">
-                <form role="form" id="form1" name="form1" action="form_success.php"                    
+                <form role="form" id="form1" name="form1" action="form_success.php" method="post"                   
                       onsubmit="return valida_form(this)">
                     <fieldset>
 
@@ -214,25 +214,25 @@
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label for="exampleInputEmail1">Nome Completo</label>
-                                <input type="text" class="form-control" placeholder="Insira seu nome aqui" autofocus id="nome" required>
+                                <input type="text" class="form-control" name="name" placeholder="Insira seu nome aqui" autofocus id="nome" required>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">CPF</label>
-                                <input type="text" class="form-control" placeholder="Informe seu CPF" id="cpf" required>
+                                <input type="text" class="form-control" name="cpf" placeholder="Informe seu CPF" id="cpf" required>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">RG</label>
-                                <input type="text" class="form-control" placeholder="Informe seu RG" id="rg" required>
+                                <input type="text" class="form-control" name="rg" placeholder="Informe seu RG" id="rg" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label for="exampleInputEmail1">E-mail</label>
-                                <input type="email" class="form-control" id="email" placeholder="Insira seu e-mail aqui" required>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Insira seu e-mail aqui" required>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">Senha</label>
-                                <input type="password" class="form-control" id="pass" placeholder="Crie uma senha" required>
+                                <input type="password" class="form-control" name="pass" id="pass" placeholder="Crie uma senha" required>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">Confirmar Senha</label>
@@ -242,15 +242,15 @@
                         <div class="row">
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">Celular</label>
-                                <input type="tel" class="form-control" placeholder="Ex.: (00) 0000-0000" id="cel" required>
+                                <input type="tel" class="form-control" name="cel" placeholder="Ex.: (00) 0000-0000" id="cel" required>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">Telefone Fixo (Opcional)</label>
-                                <input type="tel" class="form-control" placeholder="Ex.: (00) 0000-0000" id="fixo">
+                                <input type="tel" class="form-control" name="fixo" placeholder="Ex.: (00) 0000-0000" id="fixo">
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">Sexo</label>
-                                <select class="form-control" id="genero" required>
+                                <select class="form-control" id="genero" name="genero" required>
                                     <option value="">Selecione</option>
                                     <option value="indefinido">Prefiro não informar</option>
                                     <option value="masculino">Masculino</option>
@@ -259,7 +259,7 @@
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">Data de nascimento</label>
-                                <input type="date" class="form-control" id="nasc" required>
+                                <input type="date" class="form-control" name="nasc" id="nasc" required>
                             </div>
                         </div>
 
@@ -269,35 +269,35 @@
                         <div class="row">
                             <div class="form-group col-lg-2">
                                 <label for="exampleInputEmail1">CEP</label>
-                                <input type="text" class="form-control" placeholder="Insira seu CEP" id="cep" required>
+                                <input type="text" class="form-control" name="cep" placeholder="Insira seu CEP" id="cep" required>
                             </div>
                             <div class="form-group col-lg-6">
                                 <label for="exampleInputEmail1">Endereço</label>
-                                <input type="text" class="form-control" placeholder="Logradouro" id="rua" required>
+                                <input type="text" class="form-control" name="end" placeholder="Logradouro" id="rua" required>
                             </div>
                             <div class="form-group col-lg-1">
                                 <label for="exampleInputEmail1">Número</label>
-                                <input type="text" class="form-control input-sm" maxlength="5" id="num" required>
+                                <input type="text" class="form-control input-sm" maxlength="5" name="num" id="num" required>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">Bairro</label>
-                                <input type="text" class="form-control" placeholder="Bairro" id="bairro" required>
+                                <input type="text" class="form-control" placeholder="Bairro" name="bairro" id="bairro" required>
                             </div>
                             <div class="form-group col-lg-2">
                                 <label for="exampleInputEmail1">Estado</label>
-                                <select class="form-control" id="estados" required>
+                                <select class="form-control" id="estados" name="state" required>
                                     <option value=""></option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">Cidade</label>
-                                <select class="form-control" id="cidades" required>
+                                <select class="form-control" id="cidades" name="city" required>
                                     <option value=""></option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-7">
                                 <label for="exampleInputEmail1">Complemento (Opcional)</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="comp">
                             </div>
                         </div>
 
@@ -306,7 +306,7 @@
                         <br>
                         <div class="row">
                             <div class="form-group col-lg-4">
-                                <select class="form-control" id="banco" required>
+                                <select class="form-control" id="banco" name="bank" required>
                                     <option value="">Selecione o Banco</option>
                                     <option value="santader">033 – Banco Santander (Brasil) S.A</option>
                                     <option value="itau">341 – Banco Itaú S.A</option>
@@ -320,17 +320,17 @@
                             </div>
 
                             <div class="form-group col-lg-1">
-                                <input type="text" class="form-control input-sm" placeholder="Ag." id="ag" required>
+                                <input type="text" class="form-control input-sm" name="ag" placeholder="Ag." id="ag" required>
                             </div>
 
                             <div class="form-group col-lg-3">
-                                <input type="text" class="form-control" placeholder="Conta" id="conta" required>
+                                <input type="text" class="form-control" name="conta" placeholder="Conta" id="conta" required>
                             </div>
                             <div class="form-group col-lg-1">
-                                <input type="text" class="form-control input-sm" placeholder="Dig." id="dig" required>
+                                <input type="text" class="form-control input-sm" name="dig" placeholder="Dig." id="dig" required>
                             </div>
                             <div class="form-group col-lg-3">
-                                <select class="form-control" id="tipoconta" required>
+                                <select class="form-control" id="tipoconta" name="type" required>
                                     <option value="">Tipo de conta</option>
                                     <option value="corrente">Corrente</option>
                                     <option value="poupanca">Poupança</option>
