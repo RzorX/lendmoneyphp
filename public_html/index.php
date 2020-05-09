@@ -46,18 +46,18 @@
                         </a></p>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-                    <form class="navbar-form navbar-right" role="form">
+                    <form action="login.php" method="post" class="navbar-form navbar-right" role="form">
                         <div class="form-group" id="emaildiv">
                             <input type="text" placeholder="Email" class="form-control" style="
                                    margin-top: 15px;
-                                   width: 226px;" id="login" required>
+                                   width: 226px;" name="login" id="login" required>
                         </div>
                         <div class="form-group" id="passdiv">
                             <input type="password" placeholder="Senha" class="form-control" style="
-                                   margin-top: 15px;" id="pass" required>
+                                   margin-top: 15px;" name="pass" id="pass" required>
                         </div>
-                        <button type="submit" class="btn btn-success" style="
-                                margin-top: 15px;" id="entrar">Entrar</button>
+                        <input type="submit" class="btn btn-success" style="
+                               margin-top: 15px;" id="entrar" name="envia" value="Entrar">
                         <div class="form-group" id="cadastrardiv">
                             <a class="btn btn-primary" href="form.php" role="button" style="margin-top: 15px;"
                                id="cadastrar">Cadastrar</a>
@@ -296,7 +296,7 @@
                         <div class="modal-footer" style="text-align: center;">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                             <input type="submit" class="btn btn-primary" id="enviarmensagem"
-                                           role="button" value="Enviar">
+                                   role="button" value="Enviar">
                         </div>
                         </form>
                     </div>
