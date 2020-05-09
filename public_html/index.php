@@ -20,7 +20,7 @@
     </head>
     <body>
         <?php
-            $_GET
+        $_GET
         ?>
         <a name="home"></a>
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -292,12 +292,13 @@
                                     <label for="message-text" class="col-form-label">Mensagem:</label>
                                     <textarea class="form-control" id="message-text" required></textarea>
                                 </div>
-                            </form>
                         </div>
                         <div class="modal-footer" style="text-align: center;">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                            <button type="button" class="btn btn-primary">Enviar</button>
+                            <input type="submit" class="btn btn-primary" id="enviarmensagem"
+                                           role="button" value="Enviar">
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
