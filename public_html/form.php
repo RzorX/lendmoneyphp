@@ -204,7 +204,7 @@
                 </a>
             </div>
             <div class="container" id="box" style=" margin-top: 100px;">
-                <form role="form" id="form1" name="form1" action="form_success.php" method="post"                   
+                <form role="form" id="form1" name="form1" action="entrar.php" method="post"                   
                       onsubmit="return valida_form(this)">
                     <fieldset>
 
@@ -345,6 +345,7 @@
                             <a class="btn btn-danger" href="index.php" role="button">Cancelar</a>
                             <input type="submit"
                                    id="envio"
+                                   name="criarconta"
                                    class="btn btn-primary"
                                    role="button" value="Criar Conta">
                         </div>

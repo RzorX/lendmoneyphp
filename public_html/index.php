@@ -20,7 +20,10 @@
     </head>
     <body>
         <?php
-        $_GET
+        if (isset($_POST['sair'])) {
+            session_start();
+            session_destroy();
+        }
         ?>
         <a name="home"></a>
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -46,16 +49,7 @@
                         </a></p>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-                    <form action="login.php" method="post" class="navbar-form navbar-right" role="form">
-                        <div class="form-group" id="emaildiv">
-                            <input type="text" placeholder="Email" class="form-control" style="
-                                   margin-top: 15px;
-                                   width: 226px;" name="login" id="login" required>
-                        </div>
-                        <div class="form-group" id="passdiv">
-                            <input type="password" placeholder="Senha" class="form-control" style="
-                                   margin-top: 15px;" name="pass" id="pass" required>
-                        </div>
+                    <form action="entrar.php" method="post" class="navbar-form navbar-right" role="form">                       
                         <input type="submit" class="btn btn-success" style="
                                margin-top: 15px;" id="entrar" name="envia" value="Entrar">
                         <div class="form-group" id="cadastrardiv">
@@ -279,7 +273,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form action="" method="post">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Seu nome:</label>
                                     <input type="text" class="form-control" id="recipient-name" required>
@@ -295,45 +289,15 @@
                         </div>
                         <div class="modal-footer" style="text-align: center;">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                            <input type="submit" class="btn btn-primary" id="enviarmensagem"
+                            <input type="submit" class="btn btn-primary" id="enviarmensagem" name="enviarmensagem"
                                    role="button" value="Enviar">
                         </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="ModalLongoExemplo" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="TituloModalLongoExemplo"><strong>Termos e condições</strong></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                        </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" style="margin-left: 10px;"
-                                   onclick="liberatermo()">
-                            <label class="form-check-label" for="exampleCheck1">Li e concordo com os termos e condições acima</label>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                            <button type="button" class="btn btn-primary" id="aceitocondições">Aceito</button>
-                        </div>
+                        <?php
+                        if (isset($_POST['enviarmensagem'])) {
+                            echo "<script> alert('Mensagem enviada com sucesso!!') </script>";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -349,7 +313,7 @@
                             </button>
                         </div>
                         <div class="modal-body" id="form_emp">
-                            <form>
+                            <form action="" method="post">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Nome</label>
                                     <input type="text" class="form-control" id="name" required>
@@ -377,10 +341,15 @@
                                     </select>
                                 </div>
                                 <div class="modal-footer" style="text-align: center;">
-                                    <input type="submit" class="btn btn-primary" id="simularmodal"
+                                    <input type="submit" class="btn btn-primary" id="simularmodal" name="simularmodal"
                                            role="button" value="Simular">
                                 </div>
                             </form>
+                            <?php
+                            if (isset($_POST['simularmodal'])) {
+                                echo "<script> alert('Empréstimo solicitado com sucesso!!') </script>";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -397,7 +366,7 @@
                             </button>
                         </div>
                         <div class="modal-body" id="form_emp">
-                            <form>
+                            <form action="" method="post">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Nome</label>
                                     <input type="text" class="form-control" id="name" required>
@@ -425,10 +394,15 @@
                                     </select>
                                 </div>
                                 <div class="modal-footer" style="text-align: center;">
-                                    <input type="submit" class="btn btn-primary" id="simularmodal"
+                                    <input type="submit" class="btn btn-primary" id="simularmodal" name="simularmodal2"
                                            role="button" value="Simular">                                
                                 </div>
                             </form>
+                            <?php
+                            if (isset($_POST['simularmodal2'])) {
+                                echo "<script> alert('Empréstimo solicitado com sucesso!!') </script>";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -447,10 +421,10 @@
         <script src="js/main.js"></script>
 
         <script type="text/javascript">
-                                       document.getElementById("parcempresitmo").hidden = true;
-                                       document.getElementById("aceitocondições").disabled = true;
-                                       document.getElementById("empsolicitado").hidden = true;
-                                       document.getElementById("logado").hidden = true;
+                        document.getElementById("parcempresitmo").hidden = true;
+                        document.getElementById("aceitocondições").disabled = true;
+                        document.getElementById("empsolicitado").hidden = true;
+                        document.getElementById("logado").hidden = true;
         </script>
         <script>
             (function (b, o, i, l, e, r) {
