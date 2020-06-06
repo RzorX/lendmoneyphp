@@ -40,102 +40,141 @@
                     </a></p>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <form action="index.php" method="post" class="navbar-form navbar-right" role="form">                       
-                    <input type="submit" class="btn btn-success" style="
-                           margin-top: 15px;" id="sair" name="sair" value="Sair">
-                </form>
+                <?php
+                $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
+                $db = mysqli_select_db($conexao, "id13007198_itander");
+                $sqlselect = "SELECT st_status,email FROM usuario WHERE st_status = 1";
+                $resultadoselect = mysqli_query($conexao, $sqlselect);
+
+                if ($resultadoselect) {
+                    while ($registro = mysqli_fetch_array($resultadoselect)) {
+                        $_SESSION["status"] = $registro["st_status"];
+                        $_SESSION["email"] = $registro["email"];
+                        $user = $_SESSION["email"];
+                    }
+                }
+                mysqli_close($conexao);
+
+                $user = $_SESSION["email"];
+                echo "<form action='desloga.php' method='post' class='navbar-form navbar-right' role='form'>
+                    <input type='text' class='btn btn-success' style='
+                           margin-top: 15px;' id='user' name='user' value='$user'>
+                    <input type='submit' class='btn btn-success' style='
+                           margin-top: 15px;' id='sair' name='sair' value='Sair'>
+                </form>"
+                ?>        
             </div>
         </div>
     </nav>
 </html>
 <?php
-if (isset($_POST['logn']) || isset($_POST["cadastra"]) || isset($_POST["altera"]) || isset($_POST["deleta"]) || isset($_POST["listar"])) {
-    $email = $_POST["emaillogin"];
-    $pass = $_POST["senhalogin"];
-    $pold = $_POST["senhaold"];
-} else {
-    $email = '';
-    $pass = '';
-    $pold = '';
-}
+//if (isset($_POST['logn']) || isset($_POST["cadastra"]) || isset($_POST["altera"]) || isset($_POST["deleta"]) || isset($_POST["listar"])) {
+//    $email = $_POST["emaillogin"];
+//    $pass = $_POST["senhalogin"];
+//    $pold = $_POST["senhaold"];
+//} else {
+//    $email = '';
+//    $pass = '';
+//    $pold = '';
+//}
+//iF (session_status() != 2) {
+//    session_start();
+//    $_SESSION['email'] = $email;
+//    $_SESSION['senha'] = $pass;
+//}
+//if ($email !== '') {
+//    print_r("SEU E-MAIL: " . $email);
+//}
+if ($_SESSION["status"] == 1) {
 
-iF (session_status() != 2) {
-    session_start();
-    $_SESSION['email'] = $email;
-    $_SESSION['senha'] = $pass;
-}
+    echo "<div style='text-align: center;'><form action = '' name = 'f1' method = 'post'>
+    <h3> Solicitar um novo empréstimo </h3>
+    <p> Valor do empréstimo </p> <input type = 'number' name = 'valor' required>
+    <input type = 'submit' name = 'inserir' value = 'Enviar'>
+    </form></div>";
+    if (isset($_POST["inserir"])) {
+        $valor = $_POST["valor"];
+        $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
+        $db = mysqli_select_db($conexao, "id13007198_itander");
+        $sql = "INSERT INTO emp_solicitacao (email,valor) VALUES ('$user','$valor')";
+        $resultado = mysqli_query($conexao, $sql);
 
-if ($email !== '') {
-    print_r("SEU E-MAIL: " . $email);
-}
-
-$existe_sessao = session_status() == PHP_SESSION_ACTIVE;
-
-if ($pold == $pass && $existe_sessao == 2 && $pold != null) {
-    if (!isset($_SESSION['produtos'])) {
-        $_SESSION['produtos'] = array();
+        if ($resultado) {
+            $numeroregistros = mysqli_affected_rows($conexao);
+            echo "Comando executado com sucesso";
+            echo "Foram afetados $numeroregistros";
+        } else {
+            echo "Falha ao executar comando";
+        }
+        mysqli_close($conexao);
     }
-    echo "<html> <div style='text-align: center'> <h2 style='text-align: center'> Incluir </h2>
-    <form name = 'cadastro' method = 'POST' action = 'produtos.php' id='aa'>
-    Nome do Produto: <input type = 'text' name = 'nomeproduto' required>
-    <input name='emaillogin' value='$email' hidden>  
-    <input name='senhalogin' value='$pass' hidden>
-    <input name='senhaold' value='$pold' hidden>
-    <input name = 'cadastra' type = 'submit' value = 'Enviar'> <br>
-    </form> </div>
-    </html>";
-    if (isset($_POST["cadastra"])) {
-        $produtoNovo = $_POST["nomeproduto"];
-        array_push($_SESSION['produtos'], $produtoNovo);
-        print_r(array_values($_SESSION['produtos']));
+    echo "<div style='text-align: center;'><form action='' name='f2' method='post'>
+        <h3> Consultar empréstimos </h3>
+        <p> email para buscar </p> <input type='text' value='$user' name='valorconsulta' required>
+        <input type='submit' name='consultar' value='Consultar por email'>
+    </form></div>";
+    if (isset($_POST["consultar"])) {
+        $valor = $_POST["valorconsulta"];
+        $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
+        $db = mysqli_select_db($conexao, "id13007198_itander");
+        $sqlselect = "SELECT id,email,valor FROM emp_solicitacao WHERE email = '" . $_POST["valorconsulta"] . "'";
+        $resultadoselect = mysqli_query($conexao, $sqlselect);
+
+        if ($resultadoselect) {
+            while ($registro = mysqli_fetch_array($resultadoselect)) {
+                echo "ID do empréstimo: " . $registro["id"];
+                echo "Valor do empréstimo: " . $registro["valor"];
+            }
+        }
+        mysqli_close($conexao);
     }
+    echo "<div style='text-align: center;'><form action='' name='f3' method='post'>
+        <h3> Excluir um empréstimo </h3>
+        <p> Email para excluir </p> <input type='text' value='$user' name='valorexcluir' required>
+        <input type='submit' name='excluir' value='Excluir por email'>
+    </form></div>";
+    if (isset($_POST["excluir"])) {
+        $valor = $_POST["valorexcluir"];
+        $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
+        $db = mysqli_select_db($conexao, "id13007198_itander");
+        $sql = "DELETE FROM emp_solicitacao WHERE email = '$valor'";
+        $resultado = mysqli_query($conexao, $sql);
 
-    echo "<html> <div style='text-align: center'> <h2 style='text-align: center'> Alterar </h2> <form name = 'altera' method = 'POST' action = 'produtos.php'>
-    Informe a posição para alterar: <input type = 'number' name = 'posicao' required> 
-    Informe o novo nome: <input type = 'text' name = 'novonome' required>
-    <input name='emaillogin' value='$email' hidden>  
-    <input name='senhalogin' value='$pass' hidden>
-    <input name='senhaold' value='$pold' hidden>
-    <input name = 'altera' type = 'submit' value = 'Enviar'> <br>
-    </form> </div>
-    </html>";
-
-    if (isset($_POST["altera"])) {
-        $produtoNovo = $_POST["posicao"];
-        $novonome = $_POST['novonome'];
-        $_SESSION['produtos'][$produtoNovo] = $novonome;
-        print_r(array_values($_SESSION['produtos']));
+        if ($resultado) {
+            $numeroregistros = mysqli_affected_rows($conexao);
+            echo "Comando executado com sucesso";
+            echo "Foram afetados $numeroregistros";
+        } else {
+            echo "Falha ao executar comando";
+        }
+        mysqli_close($conexao);
     }
+    echo "<div style='text-align: center;'><form action='' name='f3' method='post'>
+        <h3> Alterar um empréstimo </h3>
+        <p> Email para buscar na alteração </p><input type='text' value='$user' name='valoraltera' required>
+        <p> Novo valor </p><input type='number' name='newvalor' required>
+        <input type='submit' name='alterar' value='Alterar por nome'>
+    </form></div>";
+    if (isset($_POST["alterar"])) {
+        $valor = $_POST["valoraltera"];
+        $newvalor = $_POST["newvalor"];
+        $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
+        $db = mysqli_select_db($conexao, "id13007198_itander");
+        $sql = "UPDATE emp_solicitacao set valor = '" . $_POST["newvalor"] . "' WHERE email = '" . $_POST["valoraltera"] . "'";
+        $resultado = mysqli_query($conexao, $sql);
 
-    echo "<html> <div style='text-align: center'> <h2 style='text-align: center'> Deletar </h2>
-    <form name = 'remove' method = 'POST' action = 'produtos.php'>
-    Informe a posição de delete: <input type = 'number' name = 'posicao' required>
-    <input name='emaillogin' value='$email' hidden>  
-    <input name='senhalogin' value='$pass' hidden>
-    <input name='senhaold' value='$pold' hidden>
-    <input name = 'deleta' type = 'submit' value = 'Enviar'> <br>
-    </form></div> </html>";
-    if (isset($_POST["deleta"])) {
-        $posicao = $_POST['posicao'];
-        echo "deletando item na posição: " . $posicao;
-        var_dump($_SESSION['produtos']);
-        unset($_SESSION['produtos'][$posicao]);
-        var_dump($_SESSION['produtos']);
-    }
-
-    echo "<html> <div style='text-align: center'><h2 style='text-align: center'> Listar </h2><form name = 'listar' method = 'POST' action = 'produtos.php'>
-    <input name='emaillogin' value='$email' hidden>  
-    <input name='senhalogin' value='$pass' hidden>
-    <input name='senhaold' value='$pold' hidden>
-    <input name = 'listar' type = 'submit' value = 'Listar Produtos'></form></div>
-    </html>";
-    if (isset($_POST["listar"])) {
-        print_r(array_values($_SESSION['produtos']));
-        print_r(sizeof($_SESSION['produtos']));
+        if ($resultado) {
+            $numeroregistros = mysqli_affected_rows($conexao);
+            echo "Comando executado com sucesso";
+            echo "Foram afetados $numeroregistros";
+        } else {
+            echo "Falha ao executar comando";
+        }
+        mysqli_close($conexao);
     }
 } else {
     echo "<html><h1 style='text-align: center'> Por favor, efetue login para acessar esta página </h1></html>"
     . "<html> <div style='text-align: center'> <form name = 'voltar' method = 'POST' action = 'index.php'>
-    <input name = 'voltar' type = 'submit' value = 'Voltar'></form> </div> </html>";
+            <input name = 'voltar' type = 'submit' value = 'Voltar'></form> </div> </html>";
     session_destroy();
 }

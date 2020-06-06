@@ -43,6 +43,20 @@
             $conta = $_POST["conta"];
             $dig = $_POST["dig"];
             $tyoe = $_POST["type"];
+
+            $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
+            $db = mysqli_select_db($conexao, "id13007198_itander");
+            $sql = "INSERT INTO usuario (nome) VALUES ('$nome','$email',MD5('$pass'),'$cel')";
+            $resultado = mysqli_query($conexao, $sql);
+
+            if ($resultado) {
+                $numeroregistros = mysqli_affected_rows($conexao);
+                echo "Comando executado com sucesso";
+                echo "Foram afetados $numeroregistros";
+            } else {
+                echo "Falha ao executar comando";
+            }
+            mysqli_close($conexao);
         } else {
             $nome = '';
             $cpf = '';
@@ -100,35 +114,19 @@
         </nav>
 
         <div class="login1" style="text-align: center; margin-top: 100px">
-            <?php
-            echo
-            "   <h3>É um prazer tê-lo conosco:<br> $nome</h3>
-                <p> Acesse sua seção </p>    
-                <form action='produtos.php' method='post' onsubmit='return confere_senha(this)'>
-                <h3 class='telalogin'> Login             
-                    <input type='text' value='$email' name='emaillogin' required>
+
+            <h3>É um prazer tê-lo conosco :) </h3>
+            <p> Acesse sua seção </p>    
+            <form action='login_valida.php' method='post' onsubmit='return confere_senha(this)'>
+                <h3 class='telalogin'> Login
+                    <input type='text'  name='emaillogin' required>
                 </h3>
                 <h3 class='inputsenha'> Senha
-                    <input type='password' name='senhalogin' id='senhalogin' required>
-                    <input name='senhaold' value='$pass' id='senhaold' hidden>    
-                </h3>";
-            echo "<input class='btn btn-primary' name='logn' type='submit' role='button' value='Entrar'>
+                    <input type='password' name='senhalogin' id='senhalogin' required>                     
+                </h3>;
+                <input class='btn btn-primary' name='logn' type='submit' role='button' value='Entrar'>
                 </div>
-                <script type='text/javascript' language='javascript'>
-                    function confere_senha() {                        
-                        if (document.getElementById('senhalogin').value !== document.getElementById('senhaold').value) {
-                            alert('Senha invalida');
-                            document.getElementById('senhalogin').focus();
-                            return false;
-                        }
-                    }
-                </script>
-                ";
+            </form>            
 
-            $_SESSION['email'] = $email;
-            $_SESSION['senha'] = $pass;
-            ?>
-        </form>            
-
-</body>
+    </body>
 </html>
