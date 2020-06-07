@@ -36,7 +36,8 @@ if ($total) {
         if ($resultado2) {
             $numeroregistros = mysqli_affected_rows($conexao);
             $_SESSION["status"] = $dados["st_status"];
-            header("Location: produtos.php");
+            $id = $_SESSION["id_usuario"];
+            header("Location: produtos.php?id=".$id);
         } else {
             echo "Falha ao executar comando";
         }

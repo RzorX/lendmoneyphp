@@ -1,3 +1,22 @@
+<?php
+
+        $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
+        $db = mysqli_select_db($conexao, "id13007198_itander");
+        $sqlselect = "SELECT id,st_status,email FROM usuario WHERE st_status = 1";
+        $resultadoselect = mysqli_query($conexao, $sqlselect);
+
+        if ($resultadoselect) {
+            while ($registro = mysqli_fetch_array($resultadoselect)) {
+                echo "<script> alert('Você já está logado!!'); </script>";
+                $_SESSION["id"] = $registro["id"];
+                $id = $_SESSION["id"];
+                header("Location: produtos.php?id=".$id);
+            }
+            } else {
+                echo "<script> alert('Falha ao executar comando'); </script>";
+            }
+            mysqli_close($conexao);
+?>
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -86,47 +105,47 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <span class = "sr-only">Toggle navigation</span>
+                        <span class = "icon-bar"></span>
+                        <span class = "icon-bar"></span>
+                        <span class = "icon-bar"></span>
                     </button>
-                    <p align= "center">
-                        <a class="navbar-brand" href="#" onclick="window.location = 'index.php'">
+                    <p align = "center">
+                        <a class = "navbar-brand" href = "#" onclick = "window.location = 'index.php'">
                             <img
-                                srcset="img/itander-logo-only.png 320w,
+                                srcset = "img/itander-logo-only.png 320w,
                                 img/itander-logo-only.png 480w,
                                 img/itander-logo-only.png 800w,
                                 img/itander-logo-only.png 1000w"
-                                sizes="(max-width: 320px) 280px,
+                                sizes = "(max-width: 320px) 280px,
                                 (max-width: 480px) 440px,
                                 800px"
-                                src="img/itander-logo-only.png" alt="Empréstimos online">
+                                src = "img/itander-logo-only.png" alt = "Empréstimos online">
                         </a></p>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <form class="navbar-form navbar-right" role="form">
-                        <button type="submit" class="btn btn-success" style="
+                <div id = "navbar" class = "navbar-collapse collapse">
+                    <form class = "navbar-form navbar-right" role = "form">
+                        <button type = "submit" class = "btn btn-success" style = "
                                 margin-top: 15px;">Minha Conta</button>
                     </form>
                 </div>
             </div>
         </nav>
 
-        <div class="login1" style="text-align: center; margin-top: 100px">
+        <div class = "login1" style = "text-align: center; margin-top: 100px">
 
             <h3>É um prazer tê-lo conosco :) </h3>
-            <p> Acesse sua seção </p>    
-            <form action='login_valida.php' method='post' onsubmit='return confere_senha(this)'>
-                <h3 class='telalogin'> Login
-                    <input type='text'  name='emaillogin' required>
+            <p> Acesse sua seção </p>
+            <form action = 'login_valida.php' method = 'post' onsubmit = 'return confere_senha(this)'>
+                <h3 class = 'telalogin'> Login
+                    <input type = 'text' name = 'emaillogin' required>
                 </h3>
-                <h3 class='inputsenha'> Senha
-                    <input type='password' name='senhalogin' id='senhalogin' required>                     
+                <h3 class = 'inputsenha'> Senha
+                    <input type = 'password' name = 'senhalogin' id = 'senhalogin' required>
                 </h3>;
-                <input class='btn btn-primary' name='logn' type='submit' role='button' value='Entrar'>
+                <input class = 'btn btn-primary' name = 'logn' type = 'submit' role = 'button' value = 'Entrar'>
                 </div>
-            </form>            
+            </form>
 
     </body>
 </html>

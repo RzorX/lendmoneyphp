@@ -41,9 +41,10 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <?php
+                $id = $_GET['id'];
                 $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
                 $db = mysqli_select_db($conexao, "id13007198_itander");
-                $sqlselect = "SELECT st_status,email FROM usuario WHERE st_status = 1";
+                $sqlselect = "SELECT st_status,email FROM usuario WHERE st_status = 1 and id = $id";
                 $resultadoselect = mysqli_query($conexao, $sqlselect);
 
                 if ($resultadoselect) {
@@ -58,7 +59,7 @@
                 $user = $_SESSION["email"];
                 echo "<form action='desloga.php' method='post' class='navbar-form navbar-right' role='form'>
                     <input type='text' class='btn btn-success' style='
-                           margin-top: 15px;' id='user' name='user' value='$user'>
+                           margin-top: 15px;' id='user' name='user' value='$user' disable>
                     <input type='submit' class='btn btn-success' style='
                            margin-top: 15px;' id='sair' name='sair' value='Sair'>
                 </form>"
