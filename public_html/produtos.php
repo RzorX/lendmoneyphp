@@ -44,7 +44,7 @@
                 $id = $_GET['id'];
                 $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
                 $db = mysqli_select_db($conexao, "id13007198_itander");
-                $sqlselect = "SELECT st_status,email FROM usuario WHERE st_status = 1 and id = $id";
+                $sqlselect = "SELECT st_status,email FROM usuario WHERE st_status = 1 and adm = 0";
                 $resultadoselect = mysqli_query($conexao, $sqlselect);
 
                 if ($resultadoselect) {
@@ -97,7 +97,7 @@ if ($_SESSION["status"] == 1) {
         $valor = $_POST["valor"];
         $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
         $db = mysqli_select_db($conexao, "id13007198_itander");
-        $sql = "INSERT INTO emp_solicitacao (email,valor) VALUES ('$user','$valor')";
+        $sql = "INSERT INTO emp_solicitacao (email,valor,stats) VALUES ('$user','$valor','Aguardando Aprovação')";
         $resultado = mysqli_query($conexao, $sql);
 
         if ($resultado) {
@@ -111,65 +111,19 @@ if ($_SESSION["status"] == 1) {
     }
     echo "<div style='text-align: center;'><form action='' name='f2' method='post'>
         <h3> Consultar empréstimos </h3>
-        <p> email para buscar </p> <input type='text' value='$user' name='valorconsulta' required>
         <input type='submit' name='consultar' value='Consultar por email'>
     </form></div>";
     if (isset($_POST["consultar"])) {
-        $valor = $_POST["valorconsulta"];
         $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
         $db = mysqli_select_db($conexao, "id13007198_itander");
-        $sqlselect = "SELECT id,email,valor FROM emp_solicitacao WHERE email = '" . $_POST["valorconsulta"] . "'";
+        $sqlselect = "SELECT id,email,valor,stats FROM emp_solicitacao WHERE email = '$user'";
         $resultadoselect = mysqli_query($conexao, $sqlselect);
-
         if ($resultadoselect) {
             while ($registro = mysqli_fetch_array($resultadoselect)) {
-                echo "ID do empréstimo: " . $registro["id"];
-                echo "Valor do empréstimo: " . $registro["valor"];
+                echo "<center> Código do Empréstimo: " . $registro["id"] . "</center><br>";
+                echo "<center> Valor do Empréstimo: " . $registro["valor"] . "</center><br>";                
+                echo "<center> Status do Empréstimo: " . $registro["stats"] . "</center><br>";
             }
-        }
-        mysqli_close($conexao);
-    }
-    echo "<div style='text-align: center;'><form action='' name='f3' method='post'>
-        <h3> Excluir um empréstimo </h3>
-        <p> Email para excluir </p> <input type='text' value='$user' name='valorexcluir' required>
-        <input type='submit' name='excluir' value='Excluir por email'>
-    </form></div>";
-    if (isset($_POST["excluir"])) {
-        $valor = $_POST["valorexcluir"];
-        $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
-        $db = mysqli_select_db($conexao, "id13007198_itander");
-        $sql = "DELETE FROM emp_solicitacao WHERE email = '$valor'";
-        $resultado = mysqli_query($conexao, $sql);
-
-        if ($resultado) {
-            $numeroregistros = mysqli_affected_rows($conexao);
-            echo "Comando executado com sucesso";
-            echo "Foram afetados $numeroregistros";
-        } else {
-            echo "Falha ao executar comando";
-        }
-        mysqli_close($conexao);
-    }
-    echo "<div style='text-align: center;'><form action='' name='f3' method='post'>
-        <h3> Alterar um empréstimo </h3>
-        <p> Email para buscar na alteração </p><input type='text' value='$user' name='valoraltera' required>
-        <p> Novo valor </p><input type='number' name='newvalor' required>
-        <input type='submit' name='alterar' value='Alterar por nome'>
-    </form></div>";
-    if (isset($_POST["alterar"])) {
-        $valor = $_POST["valoraltera"];
-        $newvalor = $_POST["newvalor"];
-        $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
-        $db = mysqli_select_db($conexao, "id13007198_itander");
-        $sql = "UPDATE emp_solicitacao set valor = '" . $_POST["newvalor"] . "' WHERE email = '" . $_POST["valoraltera"] . "'";
-        $resultado = mysqli_query($conexao, $sql);
-
-        if ($resultado) {
-            $numeroregistros = mysqli_affected_rows($conexao);
-            echo "Comando executado com sucesso";
-            echo "Foram afetados $numeroregistros";
-        } else {
-            echo "Falha ao executar comando";
         }
         mysqli_close($conexao);
     }

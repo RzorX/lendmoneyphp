@@ -1,63 +1,61 @@
-<?php
+    <?php
 
-// Conexão com o banco de dados 
-$conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
-$db = mysqli_select_db($conexao, "id13007198_itander");
+    $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME") or print(mysqli_error());
+    $db = mysqli_select_db($conexao, "id13007198_itander") or print (mysqli_error($conexao));
+    session_start();
+    $login = $_POST["emaillogin"] ? addslashes(trim($_POST["emaillogin"])) : FALSE;
+    $senha = $_POST["senhalogin"];
 
-// Inicia sessões 
-session_start();
+    $sql = "SELECT id, nome, email,aes_decrypt(senha,'UAM') as senha,adm FROM usuario WHERE email = '$login'";
+    $resultado = mysqli_query($conexao, $sql);
+    $total = mysqli_num_rows($resultado);
 
-// Recupera o login 
-$login = isset($_POST["emaillogin"]) ? addslashes(trim($_POST["emaillogin"])) : FALSE;
-// Recupera a senha, a criptografando em MD5 
-$senha = isset($_POST["senhalogin"]) ? md5(trim($_POST["senhalogin"])) : FALSE;
+    if ($total) {
+        $dados = mysqli_fetch_array($resultado);
 
-/**
- * Executa a consulta no banco de dados. 
- * Caso o número de linhas retornadas seja 1 o login é válido, 
- * caso 0, inválido. 
- */
-$sql = "SELECT id, nome, email, senha FROM usuario WHERE email = '$login'";
-$resultado = mysqli_query($conexao, $sql);
-$total = mysqli_num_rows($resultado);
+        if ($senha == $dados["senha"] && $dados["adm"] == 0) {
+            $_SESSION["id_usuario"] = $dados["id"];
+            $_SESSION["nome_usuario"] = stripslashes($dados["nome"]);
+            $sql2 = "UPDATE usuario set st_status = true WHERE email = '$login'";
+            $resultado2 = mysqli_query($conexao, $sql2);
 
-// Caso o usuário tenha digitado um login válido o número de linhas será 1.. 
-if ($total) {
-    // Obtém os dados do usuário, para poder verificar a senha e passar os demais dados para a sessão 
-    $dados = mysqli_fetch_array($resultado);
+            if ($resultado2) {
+                $numeroregistros1 = mysqli_affected_rows($conexao);
+                $_SESSION["status"] = $dados["st_status"];
+                $id1 = $_SESSION["id_usuario"];
+                echo "<script>window.location='produtos.php'</script>";
+            } else {
+                echo "Falha ao executar comando";
+            }
+            mysqli_close($conexao);
+            exit;
+        } else if ($senha == $dados["senha"] && $dados["adm"] == 1) {
+            $_SESSION["id_usuario"] = $dados["id"];
+            $_SESSION["nome_usuario"] = stripslashes($dados["nome"]);
+            $sql1 = "UPDATE usuario set st_status = true WHERE email = '$login'";
+            $resultado1 = mysqli_query($conexao, $sql1);
 
-    // Agora verifica a senha 
-    if (!strcmp($senha, $dados["senha"])) {
-        $_SESSION["id_usuario"] = $dados["id"];
-        $_SESSION["nome_usuario"] = stripslashes($dados["nome"]);
-        $sql2 = "UPDATE usuario set st_status = true WHERE email = '$login'";
-        $resultado2 = mysqli_query($conexao, $sql2);
-
-        if ($resultado2) {
-            $numeroregistros = mysqli_affected_rows($conexao);
-            $_SESSION["status"] = $dados["st_status"];
-            $id = $_SESSION["id_usuario"];
-            header("Location: produtos.php?id=".$id);
+            if ($resultado1) {
+                $numeroregistros2 = mysqli_affected_rows($conexao);
+                $_SESSION["status"] = $dados["st_status"];
+                $id2 = $_SESSION["id_usuario"];
+                echo "<script>window.location='administrarprodutos.php'</script>";
+            } else {
+                echo "Falha ao executar comando";
+            }
+            mysqli_close($conexao);
+            exit;
         } else {
-            echo "Falha ao executar comando";
+            echo "<script> alert('Senha inválida') </script>" .
+            "<center>Você não foi autenticado, aguarde um instante...</center>";
+            session_destroy();
+            echo "<script>window.location='entrar.php'</script>";
         }
-        mysqli_close($conexao);
-        exit;
-    }
-    // Senha inválida 
-    else {
-        echo "Senha invalida!";
-        "<html> <div style='text-align: center'> <form name = 'voltar' method = 'POST' action = 'index.php'>
-        <input name = 'voltar' type = 'submit' value = 'Voltar'></form> </div> </html>";
+    } else {
+        echo "<script> alert('Email inválido') </script>" .
+        "<center>Você não foi autenticado, aguarde um instante...</center>";
         session_destroy();
-        exit;
-    }
-}
-// Login inválido 
-else {
-    echo "O login fornecido por você é inexistente!";
-    echo "<html> <div style='text-align: center'> <form name = 'voltar' method = 'POST' action = 'index.php'>
-        <input name = 'voltar' type = 'submit' value = 'Voltar'></form> </div> </html>";
-    session_destroy();
-    exit;
-} 
+        echo "<script>window.location='entrar.php'</script>";
+    } 
+
+    

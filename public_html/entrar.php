@@ -2,15 +2,27 @@
 
         $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
         $db = mysqli_select_db($conexao, "id13007198_itander");
-        $sqlselect = "SELECT id,st_status,email FROM usuario WHERE st_status = 1";
+        $sqlselect = "SELECT id,st_status,email FROM usuario WHERE st_status = 1 and adm = 0";
+        $sqlselect2 = "SELECT id,st_status,email FROM usuario WHERE st_status = 1 and adm = 1";
         $resultadoselect = mysqli_query($conexao, $sqlselect);
+        $resultadoselect2 = mysqli_query($conexao, $sqlselect2);
 
         if ($resultadoselect) {
             while ($registro = mysqli_fetch_array($resultadoselect)) {
                 echo "<script> alert('Você já está logado!!'); </script>";
                 $_SESSION["id"] = $registro["id"];
                 $id = $_SESSION["id"];
-                header("Location: produtos.php?id=".$id);
+                echo "<script>window.location='produtos.php'</script>";
+            }
+            } else {
+                echo "<script> alert('Falha ao executar comando'); </script>";
+            }
+            if ($resultadoselect2) {
+            while ($registro2 = mysqli_fetch_array($resultadoselect2)) {
+                echo "<script> alert('Você já está logado!!'); </script>";
+                $_SESSION["id"] = $registro2["id"];
+                $id = $_SESSION["id"];
+                echo "<script>window.location='administrarprodutos.php'</script>";
             }
             } else {
                 echo "<script> alert('Falha ao executar comando'); </script>";
@@ -65,7 +77,7 @@
 
             $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
             $db = mysqli_select_db($conexao, "id13007198_itander");
-            $sql = "INSERT INTO usuario (nome) VALUES ('$nome','$email',MD5('$pass'),'$cel')";
+            $sql = "INSERT INTO usuario (nome,email,senha,celular,adm) VALUES ('$nome','$email',aes_encrypt('$pass','UAM'),'$cel',false)";
             $resultado = mysqli_query($conexao, $sql);
 
             if ($resultado) {
@@ -125,8 +137,8 @@
                 </div>
                 <div id = "navbar" class = "navbar-collapse collapse">
                     <form class = "navbar-form navbar-right" role = "form">
-                        <button type = "submit" class = "btn btn-success" style = "
-                                margin-top: 15px;">Minha Conta</button>
+                        <a class="btn btn-primary" href="form.php" role="button" style="margin-top: 15px;"
+                               id="cadastrar">Cadastrar</a>
                     </form>
                 </div>
             </div>
@@ -136,7 +148,7 @@
 
             <h3>É um prazer tê-lo conosco :) </h3>
             <p> Acesse sua seção </p>
-            <form action = 'login_valida.php' method = 'post' onsubmit = 'return confere_senha(this)'>
+            <form action = 'login_valida.php' method = 'post'>
                 <h3 class = 'telalogin'> Login
                     <input type = 'text' name = 'emaillogin' required>
                 </h3>

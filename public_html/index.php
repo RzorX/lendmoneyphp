@@ -313,14 +313,14 @@
                             </button>
                         </div>
                         <div class="modal-body" id="form_emp">
-                            <form action="" method="post">
+                            <form method="post">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Nome</label>
                                     <input type="text" class="form-control" id="name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">E-mail</label>
-                                    <input type="text" class="form-control" id="email" required>
+                                    <input type="text" class="form-control" id="email" name="email" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">CPF</label>
@@ -328,7 +328,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">Valor desejado</label>
-                                    <input type="text" class="form-control" id="valoremp" disabled>
+                                    <input type="text" class="form-control" id="valoremp" name="valoremp" disabled>
                                 </div>
                                 <div class="form-group">
                                     <select class="form-control" id="qtdparc_emp" disabled>
@@ -347,7 +347,30 @@
                             </form>
                             <?php
                             if (isset($_POST['simularmodal'])) {
-                                echo "<script> alert('Empréstimo solicitado com sucesso!!') </script>";
+                                $user = $_POST["email"];
+                                $valor = $_POST["valoremp"];               
+                                $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
+                                $db = mysqli_select_db($conexao, "id13007198_itander");
+                                $sqlselect = "SELECT st_status,email,adm FROM usuario WHERE st_status = 1 and email = '$user'";
+                                $resultadoselect = mysqli_query($conexao, $sqlselect);
+                                if ($resultadoselect) {
+                                    while ($registro = mysqli_fetch_array($resultadoselect)) {
+                                        $_SESSION["status"] = $registro["st_status"];
+                                        $_SESSION["email"] = $registro["email"];
+                                        $_SESSION["adm"] = $registro["adm"];
+                                    }
+                                    if ($_SESSION["status"] == 1) {
+                                        echo "<script> alert('Empréstimo solicitado com sucesso!!') </script>";
+                                        $sql = "INSERT INTO emp_solicitacao (email,valor,stats) VALUES ('$user','$valor','Aguardando Aprovação')";
+                                        $resultado = mysqli_query($conexao, $sql);
+                                        mysqli_close($conexao);
+                                        echo "<script>window.location='produtos.php'</script>";
+                                    } else {
+                                        echo "<script> alert('Necessário fazer login/cadastrar!!') </script>";
+                                        echo "<script>window.location='entrar.php'</script>";
+                                    }
+                                }
+                                mysqli_close($conexao);
                             }
                             ?>
                         </div>
@@ -366,14 +389,14 @@
                             </button>
                         </div>
                         <div class="modal-body" id="form_emp">
-                            <form action="" method="post">
+                            <form method="post">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Nome</label>
                                     <input type="text" class="form-control" id="name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">E-mail</label>
-                                    <input type="text" class="form-control" id="email" required>
+                                    <input type="text" class="form-control" id="email" name="email1" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">CPF</label>
@@ -381,7 +404,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">Valor desejado</label>
-                                    <input type="text" class="form-control" id="valor" required>
+                                    <input type="text" class="form-control" id="valor" name="valor1" required>
                                 </div>
                                 <div class="form-group">
                                     <select class="form-control" id="qtdparc" required>
@@ -400,7 +423,30 @@
                             </form>
                             <?php
                             if (isset($_POST['simularmodal2'])) {
-                                echo "<script> alert('Empréstimo solicitado com sucesso!!') </script>";
+                                $user = $_POST["email1"];
+                                $valor = $_POST["valor1"];
+                                $conexao = mysqli_connect("localhost", "id13007198_admin", "?&v#^^rs$\*33FME");
+                                $db = mysqli_select_db($conexao, "id13007198_itander");
+                                $sqlselect = "SELECT st_status,email,adm FROM usuario WHERE st_status = 1 and email = '$user'";
+                                $resultadoselect = mysqli_query($conexao, $sqlselect);
+                                if ($resultadoselect) {
+                                    while ($registro = mysqli_fetch_array($resultadoselect)) {
+                                        $_SESSION["status"] = $registro["st_status"];
+                                        $_SESSION["email"] = $registro["email"];
+                                        $_SESSION["adm"] = $registro["adm"];
+                                    }
+                                    if ($_SESSION["status"] == 1) {
+                                        echo "<script> alert('Empréstimo solicitado com sucesso!!') </script>";
+                                        $sql = "INSERT INTO emp_solicitacao (email,valor,stats) VALUES ('$user','$valor','Aguardando Aprovação')";
+                                        $resultado = mysqli_query($conexao, $sql);
+                                        mysqli_close($conexao);
+                                        echo "<script>window.location='produtos.php'</script>";
+                                    } else {
+                                        echo "<script> alert('Necessário fazer login/cadastrar!!') </script>";
+                                        echo "<script>window.location='entrar.php'</script>";
+                                    }
+                                }
+                                mysqli_close($conexao);
                             }
                             ?>
                         </div>
