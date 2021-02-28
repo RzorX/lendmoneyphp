@@ -193,10 +193,10 @@
             <div class="marca">
                 <a class="navbar-brand" href="#" onclick="window.location = 'index.php'">
                     <img
-                        srcset="img/itander-white.png 320w,
-                        img/itander-white.png 480w,
-                        img/itander-white.png 800w,
-                        img/itander-white.png 1000w"
+                        srcset="img/money-now-black.png 320w,
+                        img/money-now-black.png 480w,
+                        img/money-now-black.png 800w,
+                        img/money-now-black.png 1000w"
                         sizes="(max-width: 320px) 280px,
                         (max-width: 480px) 440px,
                         800px"
