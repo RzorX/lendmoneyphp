@@ -36,13 +36,13 @@ and open the template in the editor.
                     <p align= "center">
                         <a class="navbar-brand" href="#" onclick="window.location = 'index.php'">
                             <img
-                                srcset="img/itander-logo-only.png 320w,
-                                img/itander-logo-only.png 480w,
-                                img/itander-logo-only.png 800w,
-                                img/itander-logo-only.png 1000w"
-                                sizes="(max-width: 320px) 280px,
-                                (max-width: 480px) 440px,
-                                800px"
+                                srcset="img/money-now-white.png 320w,
+                                img/money-now-white.png 480w,
+                                img/money-now-white.png 800w,
+                                img/money-now-white.png 1000w"
+                                sizes="(max-width: 420px) 380px,
+                                (max-width: 580px) 540px,
+                                1500px"
                                 src="img/itander-logo-only.png" alt="Empréstimos online">
                         </a></p>
                 </div>
