@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Itander - Cadastro</title>
+        <title>MoneyNow - Cadastro</title>
         <link rel="stylesheet" href="css/form.css">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=IBM+Plex+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 

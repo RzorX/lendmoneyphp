@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title> Itander </title>
+        <title> MoneyNow </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -38,13 +38,13 @@
                     <p align= "center">
                         <a class="navbar-brand" href="#" onclick="window.location = 'index.php'">
                             <img
-                                srcset="img/itander-logo-only.png 320w,
-                                img/itander-logo-only.png 480w,
-                                img/itander-logo-only.png 800w,
-                                img/itander-logo-only.png 1000w"
-                                sizes="(max-width: 320px) 280px,
-                                (max-width: 480px) 440px,
-                                800px"
+                                srcset="img/money-now-white.png 320w,
+                                img/money-now-white.png 480w,
+                                img/money-now-white.png 800w,
+                                img/money-now-white.png 1000w"
+                                sizes="(max-width: 420px) 380px,
+                                (max-width: 580px) 540px,
+                                1500px"
                                 src="img/itander-logo-only.png" alt="Empréstimos online">
                         </a></p>
                 </div>
@@ -140,7 +140,7 @@
 
         <div class="infos">
             <h2 align="center" class="infostitle">
-                <strong>As vantagens de fazer um empréstimo no Itander:</strong>
+                <strong>As vantagens de fazer um empréstimo no MoneyNow:</strong>
             </h2>
             <div class="vantagens">
                 <div class="a">
@@ -210,16 +210,16 @@
 
         <div class="aboutus">
             <div class="us">
-                <h1 class="itander"> O ITANDER </h1>
+                <h1 class="itander"> O MoneyNow </h1>
                 <h2 class="slogan">Mudando o mercado de<br> empréstimo pessoal no Brasil</h2>
                 <p class="about">
-                    Lançado em 2020, o Itander entra no mercado de forma promissora com empréstimos 100% online no Brasil.
+                    Lançado em 2020, o MoneyNow entra no mercado de forma promissora com empréstimos 100% online no Brasil.
                 </p>
                 <p class="about2">
                     Com tecnologia de ponta e uma metodologia própria de avaliação, oferecemos uma solução simples, rápida e econômica, que prioriza a experiência de nossos clientes e permite que cada vez mais pessoas possam fazer um empréstimo pessoal seguro, com mais conveniência e menos burocracia.
                 </p>
                 <div class="about3">
-                    <a class="Conheca"  href="oitander.php" role="button" onclick="window.location = 'oitander.php'"> Conheça o Itander </a>
+                    <a class="Conheca"  href="oitander.php" role="button" onclick="window.location = 'oitander.php'"> Conheça o MoneyNow </a>
                 </div>
             </div>
         </div>
