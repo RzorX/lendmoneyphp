@@ -62,40 +62,22 @@
         </nav>
 
         <div class="home">
-            <h1 class="title">Empréstimo Pessoal <strong>Online</strong></h1>
-            <h2 class="subtitle" style="font-size:21px"> Com foco em estudantes universitários </h2>
+            <h1 class="title">Te apoiando quando você mais precisa somos a <strong>PlanoB</strong></h1>
+            <h2 class="subtitle" style="font-size:21px"> Plataforma social que facilita investimentos entre empresas e universitários </h2>
         </div>
         <div class="sub">
-            <strong><font color="black" id="parc">Quanto você precisa para terminar seus estudos?</font></strong>
+            <strong><font color="black" id="parc">Vem com a gente!!</font></strong>
         </div>  
         <div class="valores_emp" id="valempresitmo">
             <div class="valores_button">
                 <div class="botao">
                     <button class="valores1" type="button" onclick="calcparcelas(value)"
-                            id="10k" value="R$10.000"><strong> R$ 2.000 </strong></button>
+                            id="10k" value="R$10.000"><strong> Preciso de Apoio </strong></button>
                 </div>
                 <div class="botao">
                     <button class="valores1" type="button" onclick="calcparcelas(value)"
-                            id="20k" value="R$20.000"><strong> R$ 5.000 </strong></button>
+                            id="20k" value="R$20.000"><strong> Patrocine um talento </strong></button>
                 </div>
-                <div class="botao">
-                    <button class="valores1" type="button" onclick="calcparcelas(value)"
-                            id="30k" value="R$30.000"><strong> R$ 8.000 </strong></button>
-                </div>
-                <div class="valores1_button" style="
-                     margin-bottom: 0px;">
-                    <div class="botao">
-                        <button class="valores1" type="button" onclick="calcparcelas(value)"
-                                id="40k" value="R$40.000"><strong> R$ 10.000 </strong></button>
-                    </div>
-                    <div class="botao">
-                        <button class="valores1" type="button" onclick="calcparcelas(value)"
-                                id="50k" value="R$50.000"><strong> R$ 15.000 </strong></button>
-                    </div>
-                    <div class="botao">
-                        <button class="valores1" type="button" data-toggle="modal" data-target="#solicitaemprestimo_value"
-                                id="value_alt"><strong> Outro Valor </strong></button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -141,7 +123,7 @@
 
         <div class="infos">
             <h2 align="center" class="infostitle">
-                <strong>As vantagens de fazer um empréstimo no MoneyNow:</strong>
+                <strong>As vantagens de se cadastrar na PlanoB</strong>
             </h2>
             <div class="vantagens">
                 <div class="a">
